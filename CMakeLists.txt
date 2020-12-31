@@ -1159,7 +1159,6 @@ if(CONFIG_BUILD_OUTPUT_BIN)
   endif()
 endif()
 
-
 # Cleanup intermediate files
 if(CONFIG_CLEANUP_INTERMEDIATE_FILES)
     list(APPEND
@@ -1168,6 +1167,22 @@ if(CONFIG_CLEANUP_INTERMEDIATE_FILES)
       # This file can be very large in some cases, delete it as we do not need it.
       ${CMAKE_COMMAND} -E remove ${ZEPHYR_PREBUILT_EXECUTABLE}.elf
       )
+endif()
+
+if(CONFIG_BUILD_OUTPUT_BIN AND CONFIG_BUILD_OUTPUT_UF2)
+  list(APPEND
+    post_build_commands
+    COMMAND ${PYTHON_EXECUTABLE} ${ZEPHYR_BASE}/scripts/uf2conv.py
+            -c
+            -f ${CONFIG_BUILD_OUTPUT_UF2_FAMILY_ID}
+            -b ${CONFIG_FLASH_LOAD_OFFSET}
+            -o ${KERNEL_UF2_NAME}
+            ${KERNEL_BIN_NAME}
+  )
+  list(APPEND
+    post_build_byproducts
+    ${KERNEL_UF2_NAME}
+  )
 endif()
 
 if(CONFIG_BUILD_OUTPUT_S19)
