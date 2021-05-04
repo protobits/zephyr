@@ -47,6 +47,7 @@
 /soc/arm/qemu_cortex_a53/                 @carlocaione
 /soc/arm/quicklogic_eos_s3/               @kowalewskijan @kgugala
 /soc/arm/silabs_exx32/efm32pg1b/          @rdmeneze
+/soc/arm/raspberrypi/                     @yonsch
 /soc/arm/silabs_exx32/efr32mg21/          @l-alfred
 /soc/arm/st_stm32/                        @erwango
 /soc/arm/st_stm32/*/power.c               @FRASTM
@@ -325,7 +326,15 @@
 /dts/arm/nuvoton/npcx/                    @MulinChao
 /dts/arm/nxp/                             @MaureenHelm
 /dts/arm/microchip/                       @franciscomunoz @albertofloyd @scottwcpg
+<<<<<<< HEAD
 /dts/arm/silabs/efm32_pg_1b.dtsi          @rdmeneze
+=======
+<<<<<<< HEAD
+=======
+/dts/arm/raspberrypi/                     @yonsch
+/dts/arm/silabs/efm32_pg_1b.dtsi          @rdmeneze
+>>>>>>> a3aca2f41... soc: Added support for Raspberry Pi's RP2040 SoC
+>>>>>>> 880eced1c5 (soc: Added support for Raspberry Pi's RP2040 SoC)
 /dts/arm/silabs/efm32gg11b*               @oanerer
 /dts/arm/silabs/efm32_jg_pg*              @chrta
 /dts/arm/silabs/efr32bg13p*               @mnkp
