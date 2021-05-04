@@ -148,6 +148,10 @@ manifest:
       repo-path: mcuboot
       path: modules/tee/tfm-mcuboot
       revision: 1.7.0-rc1
+      revision: 143df675557305b61f7930a50459a53a8d2bb097
+    - name: hal_raspberrypi
+      path: modules/hal/raspberrypi
+      revision: pull/1/head
 
   self:
     path: zephyr
