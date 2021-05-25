@@ -1175,7 +1175,7 @@ if(CONFIG_BUILD_OUTPUT_BIN AND CONFIG_BUILD_OUTPUT_UF2)
     COMMAND ${PYTHON_EXECUTABLE} ${ZEPHYR_BASE}/scripts/uf2conv.py
             -c
             -f ${CONFIG_BUILD_OUTPUT_UF2_FAMILY_ID}
-            -b ${CONFIG_FLASH_LOAD_OFFSET}
+            -b ${CONFIG_BUILD_OUTPUT_UF2_OFFSET}
             -o ${KERNEL_UF2_NAME}
             ${KERNEL_BIN_NAME}
   )
