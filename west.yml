@@ -21,6 +21,8 @@ manifest:
   remotes:
     - name: upstream
       url-base: https://github.com/zephyrproject-rtos
+    - name: protobits
+      url-base: https://github.com/protobits
 
   #
   # Please add items below based on alphabetical order
@@ -150,8 +152,9 @@ manifest:
       revision: 1.7.0-rc1
       revision: 143df675557305b61f7930a50459a53a8d2bb097
     - name: hal_raspberrypi
+      remote: protobits
       path: modules/hal/raspberrypi
-      revision: pull/1/head
+      revision: master
 
   self:
     path: zephyr
