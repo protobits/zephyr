@@ -155,10 +155,12 @@ static void gpio_raspberrypi_isr(const struct device *dev)
 	}
 }
 
+DEVICE_DECLARE(gpio0);
+
 static int gpio_raspberrypi_init(const struct device *dev)
 {
 	IRQ_CONNECT(IO_IRQ_BANK0, IRQ_PRIORITY, gpio_raspberrypi_isr,
-			DEVICE_DT_GET(DT_INST(0, raspberrypi_rp2_gpio)), 0);
+			DEVICE_GET(gpio0), 0);
 	irq_enable(IO_IRQ_BANK0);
 	return 0;
 }
@@ -169,7 +171,7 @@ static const struct gpio_raspberrypi_config gpio_raspberrypi_##idx##_config = {	
 										\
 static struct gpio_raspberrypi_data gpio_raspberrypi_##idx##_data;		\
 										\
-DEVICE_DT_INST_DEFINE(idx, gpio_raspberrypi_init, NULL,				\
+DEVICE_DEFINE(gpio##idx, DT_INST_LABEL(idx), gpio_raspberrypi_init, NULL,				\
 			&gpio_raspberrypi_##idx##_data,				\
 			&gpio_raspberrypi_##idx##_config,			\
 			POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,	\

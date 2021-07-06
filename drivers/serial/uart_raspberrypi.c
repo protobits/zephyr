@@ -67,7 +67,7 @@ static const struct uart_driver_api uart_rpi_driver_api = {
 									\
 	static struct uart_rpi_data uart_rpi_data_##idx;		\
 									\
-	DEVICE_DT_INST_DEFINE(idx, &uart_rpi_init,			\
+	DEVICE_DEFINE(DT_DRV_INST(idx), DT_INST_LABEL(idx), &uart_rpi_init, \
 				device_pm_control_nop,			\
 				&uart_rpi_data_##idx, 			\
 				&uart_rpi_cfg_##idx, PRE_KERNEL_1,	\
