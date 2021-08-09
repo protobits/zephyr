@@ -4,3 +4,26 @@
 config UART_RASPBERRYPI
 	bool "Raspberry Pi UART driver"
 	select SERIAL_HAS_DRIVER
+
+menuconfig UART_PIO_RASPBERRYPI
+	bool "Raspberry Pi PIO based UART driver"
+	select SERIAL_HAS_DRIVER
+	select SERIAL_SUPPORT_ASYNC
+
+# if UART_PIO_RASPBERRYPI
+
+# choice
+# 	default UART_PIO_RASPBERRYPI_RX
+
+# 	config UART_PIO_RASPBERRYPI_RX
+# 		bool "RX only"
+
+# 	config UART_PIO_RASPBERRYPI_TX
+# 		bool "TX only"
+
+# 	config UART_PIO_RASPBERRYPI_RX_TX
+# 		bool "RX+TX (half-duplex)"
+
+# endchoice
+
+# endif

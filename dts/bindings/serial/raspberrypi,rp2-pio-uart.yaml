@@ -1,0 +1,18 @@
+description: Raspberry Pi PIO based UART (half-duplex)
+
+compatible: "raspberrypi,rp2-pio-uart"
+
+include: uart-controller.yaml
+
+properties:
+    pio:
+      type: int
+      required: true
+
+#    interrupts:
+#      required: true
+
+    pin:
+      type: int
+      required: true
+      description: TX/RX pin as a GPIO number

@@ -41,6 +41,17 @@ zephyr_library_sources_ifdef(CONFIG_USB_CDC_ACM ${ZEPHYR_BASE}/misc/empty_file.c
 
 zephyr_library_sources_ifdef(CONFIG_USERSPACE   uart_handlers.c)
 
+if (CONFIG_UART_PIO_RASPBERRYPI)
+  # HACK: make this work somehow better
+  set(PICO_SDK_PATH ${ZEPHYR_RASPBERRYPI_CMAKE_DIR}/pico-sdk)
+  list(APPEND CMAKE_MODULE_PATH ${PICO_SDK_PATH}/tools)
+  include(${PICO_SDK_PATH}/tools/CMakeLists.txt)
+
+  zephyr_library_sources(uart_raspberrypi_pio.c)
+  pico_generate_pio_header(${ZEPHYR_CURRENT_LIBRARY} ${CMAKE_CURRENT_LIST_DIR}/uart_raspberrypi_pio_tx.pio)
+  pico_generate_pio_header(${ZEPHYR_CURRENT_LIBRARY} ${CMAKE_CURRENT_LIST_DIR}/uart_raspberrypi_pio_rx.pio)
+endif()
+
 if(CONFIG_UART_NS16550)
   zephyr_library_sources(uart_ns16550.c)
   math(EXPR max_index "${CONFIG_UART_NS16550_MAX_INSTANCES} - 1")
