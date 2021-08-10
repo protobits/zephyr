@@ -15,8 +15,8 @@
 
 #include <kernel.h>
 #include <init.h>
+#include <arch/arm/aarch32/cortex_m/cmsis.h>
 #include <logging/log.h>
-
 
 #ifdef CONFIG_RUNTIME_NMI
 extern void z_arm_nmi_init(void);
@@ -29,6 +29,7 @@ extern void z_arm_nmi_init(void);
 LOG_MODULE_REGISTER(soc);
 
 void rp2_init(void);
+void rp2_usb_reset(void);
 
 static int raspberry_pi_rp2040_init(const struct device *arg)
 {
@@ -48,6 +49,18 @@ static int raspberry_pi_rp2040_init(const struct device *arg)
 	irq_unlock(key);
 
 	return 0;
+}
+
+void sys_arch_reboot(int type)
+{
+	if (type == 0)
+	{
+		NVIC_SystemReset();	
+	}
+	else
+	{
+		rp2_usb_reset();
+	}
 }
 
 SYS_INIT(raspberry_pi_rp2040_init, PRE_KERNEL_1, 0);
